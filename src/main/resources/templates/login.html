@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>login</title>
+
+  <script src="./lib/jquery-3.5.1.min.js"></script>
+  <link href="./lib/bootstrap4/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="./lib/bootstrap4/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+<form name="form" accept-charset="utf-8" action="/loginVerify" method="post"
+      onSubmit="javascript:return check_login();">
+  <div class="container">
+    <div class="form row">
+      <div class="form-horizontal col-md-offset-3" id="login_form">
+        <h3 class="form-title">登录</h3>
+        <div class="col-md-9">
+          <div class="user-name-description" style="width: 280px;">
+            <div style="float: left;margin-top: 30px;"><label>用户名：</label></div>
+            <div class="form-grou p" style="float: right">
+              <i class="fa fa-user fa-lg"></i>
+              <input class="form-control required" type="text" placeholder="Username" id="username"
+                     name="username" autofocus="autofocus" maxlength="20"/>
+            </div>
+          </div>
+          <div class="password-description" style="width: 280px;">
+            <div style="float: left;margin-top: 30px;"><label>密码：</label></div>
+            <div class="form-group" style="float: right">
+              <i class="fa fa-lock fa-lg"></i>
+              <input class="form-control required" type="password" placeholder="Password"
+                     id="password" name="password" maxlength="8"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox">
+              <input type="checkbox" name="remember" value="1"/>记住我
+            </label>
+          </div>
+          <div class="form-group col-md-offset-9" style="margin-left: 220px;">
+            <button type="submit" class="btn btn-success pull-right" name="submit">登录</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+<script type="text/javascript">
+  function check_login() {
+    if (document.form.username.value == "")/*document.表单名.文本域名.value==''"*/
+    {
+      alert("请检查用户名是否为空！");
+      return false;
+    }
+    if (document.form.password.value == "") {
+      alert("请检查您的密码是否为空！");
+      return false
+    }
+    /*<![CDATA[*/
+    if (document.form.password.value.length < 6) {
+      alert("您的密码长度小于6！");
+      return false
+    }
+    /*]]>*/
+  }
+</script>
+</html>
