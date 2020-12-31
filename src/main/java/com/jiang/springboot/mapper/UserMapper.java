@@ -3,14 +3,13 @@ package com.jiang.springboot.mapper;
 import com.jiang.springboot.bean.UserInfo;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Component;
 
 @Mapper
-@MapperScan
 @Component
 public interface UserMapper {
 
@@ -27,5 +26,13 @@ public interface UserMapper {
       @Result(column = "user_name", property = "userName")
   })
   List<UserInfo> batchUserInfoAll();
+
+  @Select("select * from user_info where user_name='${userName}' and password='${password}'")
+  @Results({
+      @Result(column = "user_name", property = "userName"),
+      @Result(column = "password", property = "password")
+  })
+  List<UserInfo> queryUserInfo(@Param("userName") String userName,
+      @Param("password") String password);
 
 }
