@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div>
-  <h5>登录成功</h5>
-</div>
+<h3 th:text="登录成功"></h3><a href="/logout">注销</a><h3><a href="/Select">转到查看数据页面</a></h3>
 </body>
 </html>

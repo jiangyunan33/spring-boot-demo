@@ -13,42 +13,47 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * 登录配置
+ *  * 登录配置
  */
-//@Configuration
+@Configuration
 public class WebSecurityConfig implements WebMvcConfigurer {
 
   public final static String SESSION_KEY = "username";
-//
-//  @Bean
-//  public SecurityInterceptor getSecurityInterceptor() {
-//    return new SecurityInterceptor();
-//  }
-//
-//  public void addInterceptors(InterceptorRegistry registry) {
-//    InterceptorRegistration addInterceptor = registry.addInterceptor(getSecurityInterceptor());
-//
-////    addInterceptor.excludePathPatterns("/error");
-////    addInterceptor.excludePathPatterns("/login**");
-////
-////    addInterceptor.addPathPatterns("/**");
-//  }
-//
-//  private static class SecurityInterceptor extends HandlerInterceptorAdapter {
-//
-//    @Override
-//    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
-//        Object handler) throws IOException {
-////      HttpSession session = request.getSession();
-////
-//////            判断是否已有该用户登录的session
-////      if (session.getAttribute(SESSION_KEY) != null) {
-////        return true;
-////      }
-//////            跳转到登录页
-//      String url = "/login";
-//      response.sendRedirect(url);
-//      return false;
-//    }
-//  }
+
+  @Bean
+  public SecurityInterceptor getSecurityInterceptor() {
+    return new SecurityInterceptor();
+  }
+
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    System.out.println("addInterceptors");
+    InterceptorRegistration addInterceptor = registry.addInterceptor(this.getSecurityInterceptor());
+
+    // 添加拦截器
+    addInterceptor.addPathPatterns("/**")
+        // 排除拦截器
+        .excludePathPatterns("/error")
+        .excludePathPatterns("/login**")
+        .excludePathPatterns("/**/*.css");
+  }
+
+  private static class SecurityInterceptor extends HandlerInterceptorAdapter {
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+        Object handler) throws IOException {
+      HttpSession session = request.getSession();
+
+      System.out.println("preHandle -> "+session.getAttribute(SESSION_KEY));
+      // 判断是否已有该用户登录的session
+      if (session.getAttribute(SESSION_KEY) != null) {
+        return true;
+      }
+      // 跳转到登录页
+      String url = "/login";
+      response.sendRedirect(url);
+      return false;
+    }
+  }
 }
