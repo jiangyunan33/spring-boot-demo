@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- *  * 登录配置
+ * 登录配置
  */
 @Configuration
 public class WebSecurityConfig implements WebMvcConfigurer {
@@ -33,9 +33,10 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     // 添加拦截器
     addInterceptor.addPathPatterns("/**")
         // 排除拦截器
+        .excludePathPatterns("/**/*.css")
         .excludePathPatterns("/error")
-        .excludePathPatterns("/login**")
-        .excludePathPatterns("/**/*.css");
+        .excludePathPatterns("/static/**")
+        .excludePathPatterns("/login**");
   }
 
   private static class SecurityInterceptor extends HandlerInterceptorAdapter {
@@ -45,7 +46,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         Object handler) throws IOException {
       HttpSession session = request.getSession();
 
-      System.out.println("preHandle -> "+session.getAttribute(SESSION_KEY));
+      System.out.println("preHandle -> " + session.getAttribute(SESSION_KEY));
       // 判断是否已有该用户登录的session
       if (session.getAttribute(SESSION_KEY) != null) {
         return true;
