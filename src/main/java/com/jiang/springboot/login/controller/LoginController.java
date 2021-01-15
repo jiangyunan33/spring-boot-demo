@@ -22,7 +22,7 @@ public class LoginController {
     return "login";
   }
 
-  @GetMapping("/loginVerify")
+  @PostMapping("/loginVerify")
   public String loginVerity(String userName, String password, HttpSession session) {
     System.out.println(userName + "," + password);
     UserInfo info = new UserInfo();

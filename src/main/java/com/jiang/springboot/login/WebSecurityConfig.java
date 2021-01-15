@@ -30,13 +30,14 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     System.out.println("addInterceptors");
     InterceptorRegistration addInterceptor = registry.addInterceptor(this.getSecurityInterceptor());
 
-    // 添加拦截器
     addInterceptor.addPathPatterns("/**")
         // 排除拦截器
+        .excludePathPatterns("/static/**")
         .excludePathPatterns("/**/*.css")
         .excludePathPatterns("/error")
-        .excludePathPatterns("/static/**")
+        .excludePathPatterns("/img**")
         .excludePathPatterns("/login**");
+    // 添加拦截器
   }
 
   private static class SecurityInterceptor extends HandlerInterceptorAdapter {
