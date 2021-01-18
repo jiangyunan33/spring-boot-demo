@@ -1,4 +1,4 @@
-package com.jiang.springboot.login.controller;
+package com.jiang.springboot.controller.login;
 
 import com.jiang.springboot.login.WebSecurityConfig;
 import com.jiang.springboot.login.bean.UserInfo;
