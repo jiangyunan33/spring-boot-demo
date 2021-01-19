@@ -1,6 +1,5 @@
 package com.jiang.springboot.login.mapper;
 
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -11,7 +10,6 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import com.jiang.springboot.login.bean.UserInfo;
-
 
 @Mapper
 @Component
