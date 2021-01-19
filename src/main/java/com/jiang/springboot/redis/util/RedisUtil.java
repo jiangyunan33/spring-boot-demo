@@ -1,20 +1,22 @@
 package com.jiang.springboot.redis.util;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
+import org.springframework.util.CollectionUtils;
 
 /**
  * redisTemplate封装
  *
- * @author zjjlive@dist.com.cn
+ * @author jiangyunan
  */
 @Component
 public class RedisUtil {
@@ -86,7 +88,7 @@ public class RedisUtil {
     }
   }
 
-  //============================String=============================
+  // ============================String=============================
 
   /**
    * 普通缓存获取
@@ -165,7 +167,7 @@ public class RedisUtil {
     return redisTemplate.opsForValue().increment(key, -delta);
   }
 
-  //================================Map=================================
+  // ================================Map=================================
 
   /**
    * HashGet
@@ -250,7 +252,7 @@ public class RedisUtil {
    * @param key   键
    * @param item  项
    * @param value 值
-   * @param time  时间(秒)  注意:如果已存在的hash表有时间,这里将会替换原有的时间
+   * @param time  时间(秒) 注意:如果已存在的hash表有时间,这里将会替换原有的时间
    * @return true 成功 false失败
    */
   public boolean hset(String key, String item, Object value, long time) {
@@ -311,7 +313,7 @@ public class RedisUtil {
     return redisTemplate.opsForHash().increment(key, item, -by);
   }
 
-  //============================set=============================
+  // ============================set=============================
 
   /**
    * 根据key获取Set中的所有值
@@ -412,14 +414,14 @@ public class RedisUtil {
       return 0;
     }
   }
-  //===============================list=================================
+  // ===============================list=================================
 
   /**
    * 获取list缓存的内容
    *
    * @param key   键
    * @param start 开始
-   * @param end   结束  0 到 -1代表所有值
+   * @param end   结束 0 到 -1代表所有值
    * @return
    */
   public List<Object> lGet(String key, long start, long end) {
@@ -450,7 +452,7 @@ public class RedisUtil {
    * 通过索引 获取list中的值
    *
    * @param key   键
-   * @param index 索引  index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
+   * @param index 索引 index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
    * @return
    */
   public Object lGetIndex(String key, long index) {
