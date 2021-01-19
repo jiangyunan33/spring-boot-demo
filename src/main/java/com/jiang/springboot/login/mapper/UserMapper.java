@@ -19,17 +19,17 @@ public interface UserMapper {
 
     @Select("select * from user_info where user_id in (${userIdList})")
     @Results({@Result(column = "user_id", property = "userId"),
-        @Result(column = "user_name", property = "userName")})
+            @Result(column = "user_name", property = "userName")})
     List<UserInfo> batchUserInfo(List<String> userIdList);
 
     @Select("select * from user_info")
     @Results({@Result(column = "user_id", property = "userId"),
-        @Result(column = "user_name", property = "userName")})
+            @Result(column = "user_name", property = "userName")})
     List<UserInfo> batchUserInfoAll();
 
     @Select("select * from user_info where user_name='${userName}' and password='${password}'")
     @Results({@Result(column = "user_name", property = "userName"),
-        @Result(column = "password", property = "password")})
+            @Result(column = "password", property = "password")})
     List<UserInfo> queryUserInfo(@Param("userName") String userName,
                                  @Param("password") String password);
 }

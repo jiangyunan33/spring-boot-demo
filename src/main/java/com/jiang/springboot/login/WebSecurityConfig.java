@@ -32,13 +32,13 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         System.out.println("addInterceptors");
         InterceptorRegistration addInterceptor = registry.addInterceptor(
-            this.getSecurityInterceptor());
+                this.getSecurityInterceptor());
 
         addInterceptor.addPathPatterns("/**")
-            // 排除拦截器
-            .excludePathPatterns("/static/**").excludePathPatterns(
+                // 排除拦截器
+                .excludePathPatterns("/static/**").excludePathPatterns(
                 "/**/*.css").excludePathPatterns("/error").excludePathPatterns(
-                    "/img**").excludePathPatterns("/login**");
+                "/img**").excludePathPatterns("/login**");
         // 添加拦截器
     }
 
@@ -47,7 +47,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                                  Object handler)
-            throws IOException {
+                throws IOException {
             HttpSession session = request.getSession();
 
             System.out.println("preHandle -> " + session.getAttribute(SESSION_KEY));

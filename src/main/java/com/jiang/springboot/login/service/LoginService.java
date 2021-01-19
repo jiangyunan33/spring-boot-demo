@@ -19,7 +19,7 @@ public class LoginService {
 
     public boolean loginVerify(UserInfo userInfo) {
         List<UserInfo> userList = userMapper.queryUserInfo(userInfo.getUserName(),
-            userInfo.getPassword());
+                userInfo.getPassword());
         System.out.println(userList);
         return CollectionUtils.isNotEmpty(userList);
     }

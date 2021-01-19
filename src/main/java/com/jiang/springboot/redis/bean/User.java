@@ -13,7 +13,8 @@ public class User {
 
     private String userSex;
 
-    public User() {}
+    public User() {
+    }
 
     public User(Integer id, String userName, String userSex) {
         this.id = id;
